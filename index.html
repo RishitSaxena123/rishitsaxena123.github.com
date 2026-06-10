@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>APEX CUSTOMS — Premium Auto Customization</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black:   #0A0A0A;
+    --orange:  #FF5E00;
+    --orange2: #FF8C42;
+    --steel:   #1A1A2E;
+    --chrome:  #C8C8C8;
+    --white:   #FFFFFF;
+    --gray:    #5A5A5A;
+    --light:   #F2F2F2;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,94,0,0.15);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 3px;
+    color: var(--white);
+  }
+  .nav-logo span { color: var(--orange); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--chrome);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--orange); }
+  .nav-cta {
+    background: var(--orange);
+    color: var(--white) !important;
+    padding: 0.55rem 1.4rem;
+    font-weight: 700 !important;
+    letter-spacing: 1.5px !important;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--orange2) !important; color: var(--white) !important; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 0 4rem;
+    background: linear-gradient(135deg, #0A0A0A 0%, #1A0A00 50%, #0A0A0A 100%);
+  }
+  .hero-bg-text {
+    position: absolute;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(120px, 20vw, 280px);
+    color: rgba(255,94,0,0.04);
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    white-space: nowrap;
+    pointer-events: none;
+    letter-spacing: 10px;
+  }
+  .slash-decor {
+    position: absolute; top: 0; right: 0;
+    width: 45%; height: 100%;
+    background: linear-gradient(135deg, transparent 0%, rgba(255,94,0,0.06) 50%, rgba(255,94,0,0.12) 100%);
+    clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+  .slash-line {
+    position: absolute;
+    width: 3px; height: 60%;
+    background: linear-gradient(to bottom, transparent, var(--orange), transparent);
+    top: 20%; right: 43%;
+    transform: rotate(15deg);
+    opacity: 0.4;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 750px; }
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: 1rem;
+    font-size: 0.75rem; letter-spacing: 4px;
+    text-transform: uppercase; color: var(--orange);
+    font-weight: 600; margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 40px; height: 2px; background: var(--orange);
+  }
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(64px, 9vw, 130px);
+    line-height: 0.9;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+  }
+  h1 em { color: var(--orange); font-style: normal; display: block; }
+  .hero-sub {
+    font-size: 1.05rem; color: var(--chrome);
+    line-height: 1.7; max-width: 520px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+  .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--orange);
+    color: var(--white);
+    padding: 1rem 2.2rem;
+    font-size: 0.85rem; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    text-decoration: none;
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    transition: background 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--orange2); transform: translateY(-2px); }
+  .btn-ghost {
+    border: 1.5px solid var(--chrome);
+    color: var(--chrome);
+    padding: 1rem 2.2rem;
+    font-size: 0.85rem; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--orange); color: var(--orange); }
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 4rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem; color: var(--orange); line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.72rem; color: var(--chrome);
+    letter-spacing: 2px; text-transform: uppercase; margin-top: 0.3rem;
+  }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 6rem 4rem; }
+  .section-eyebrow {
+    font-size: 0.72rem; color: var(--orange);
+    letter-spacing: 4px; text-transform: uppercase;
+    font-weight: 600; margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .section-eyebrow::before {
+    content: ''; width: 30px; height: 2px; background: var(--orange);
+  }
+  h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(42px, 5vw, 72px);
+    letter-spacing: 2px; line-height: 1;
+  }
+  .section-sub {
+    color: var(--chrome); font-weight: 300;
+    font-size: 1rem; line-height: 1.7;
+    max-width: 580px; margin-top: 1rem;
+  }
+
+  /* ── OFFER BANNER ── */
+  #offer-banner {
+    background: var(--orange);
+    padding: 1.1rem 4rem;
+    display: flex; align-items: center; justify-content: center;
+    gap: 2rem; flex-wrap: wrap;
+  }
+  .offer-tag {
+    background: var(--black); color: var(--orange);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem; letter-spacing: 2px;
+    padding: 0.25rem 0.8rem;
+  }
+  .offer-text {
+    font-weight: 700; font-size: 0.95rem;
+    letter-spacing: 1.5px; text-transform: uppercase;
+  }
+  .offer-cta {
+    background: var(--black); color: var(--orange);
+    padding: 0.4rem 1.2rem;
+    font-size: 0.75rem; font-weight: 800;
+    letter-spacing: 2px; text-transform: uppercase;
+    text-decoration: none;
+    clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+    white-space: nowrap;
+    transition: opacity 0.2s;
+  }
+  .offer-cta:hover { opacity: 0.85; }
+
+  /* ── SERVICES ── */
+  #services { background: var(--black); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5px;
+    margin-top: 3.5rem;
+    border: 1.5px solid rgba(255,94,0,0.12);
+  }
+  .service-card {
+    background: #0F0F0F;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+    cursor: default;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 3px; height: 0;
+    background: var(--orange);
+    transition: height 0.35s ease;
+  }
+  .service-card:hover::before { height: 100%; }
+  .service-card:hover { background: #141414; }
+  .service-icon {
+    font-size: 2.2rem; margin-bottom: 1.2rem;
+    display: block;
+  }
+  .service-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem; letter-spacing: 1px;
+    margin-bottom: 0.8rem;
+  }
+  .service-card p {
+    color: var(--chrome); font-size: 0.88rem;
+    line-height: 1.7; font-weight: 300;
+  }
+  .service-tag {
+    display: inline-block; margin-top: 1.2rem;
+    background: rgba(255,94,0,0.12);
+    color: var(--orange);
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+  }
+
+  /* ── DEALS ── */
+  #deals { background: var(--steel); position: relative; overflow: hidden; }
+  #deals::before {
+    content: 'DEALS';
+    position: absolute;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18vw; color: rgba(255,94,0,0.04);
+    top: 50%; left: 50%; transform: translate(-50%,-50%);
+    white-space: nowrap; pointer-events: none;
+  }
+  .deals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem; margin-top: 3.5rem;
+    position: relative; z-index: 1;
+  }
+  .deal-card {
+    background: var(--black);
+    padding: 2rem;
+    border: 1px solid rgba(255,94,0,0.2);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .deal-card:hover { border-color: var(--orange); transform: translateY(-4px); }
+  .deal-badge {
+    position: absolute; top: 0; right: 0;
+    background: var(--orange);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem; letter-spacing: 1px;
+    padding: 0.4rem 1rem;
+    clip-path: polygon(10px 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+  .deal-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem; margin-bottom: 0.6rem; margin-top: 1rem;
+  }
+  .deal-card p { color: var(--chrome); font-size: 0.87rem; line-height: 1.65; font-weight: 300; }
+  .deal-price {
+    margin-top: 1.5rem;
+    display: flex; align-items: baseline; gap: 0.6rem;
+  }
+  .price-new {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.4rem; color: var(--orange);
+  }
+  .price-old {
+    font-size: 1rem; color: var(--gray);
+    text-decoration: line-through;
+  }
+  .deal-timer {
+    margin-top: 1rem;
+    font-size: 0.72rem; letter-spacing: 2px;
+    color: var(--orange2); text-transform: uppercase;
+    font-weight: 600;
+  }
+  .deal-link {
+    display: block; margin-top: 1.2rem;
+    color: var(--orange); font-size: 0.8rem;
+    font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; text-decoration: none;
+    transition: gap 0.2s;
+  }
+  .deal-link:hover { text-decoration: underline; }
+
+  /* ── PRICING ── */
+  #pricing { background: #080808; }
+  .pricing-toggle {
+    display: flex; align-items: center; gap: 1rem;
+    margin: 2rem 0 3.5rem;
+  }
+  .toggle-label { font-size: 0.85rem; color: var(--chrome); font-weight: 500; }
+  .toggle-label.active { color: var(--orange); }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px;
+    border: 1px solid rgba(255,94,0,0.1);
+  }
+  .price-card {
+    background: #0F0F0F;
+    padding: 2.5rem 2rem;
+    position: relative;
+    transition: background 0.3s;
+  }
+  .price-card.featured {
+    background: #140800;
+    border: 1.5px solid var(--orange);
+    margin: -1px;
+    z-index: 1;
+  }
+  .price-card.featured::before {
+    content: 'MOST POPULAR';
+    position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+    background: var(--orange);
+    font-size: 0.62rem; font-weight: 800;
+    letter-spacing: 2px; padding: 0.3rem 1rem;
+    white-space: nowrap;
+  }
+  .plan-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem; letter-spacing: 2px;
+    color: var(--chrome); margin-bottom: 0.5rem;
+  }
+  .price-card.featured .plan-name { color: var(--orange); }
+  .plan-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem; color: var(--white);
+    line-height: 1; margin-bottom: 0.3rem;
+  }
+  .plan-price span { font-size: 1.2rem; color: var(--chrome); }
+  .plan-desc { font-size: 0.82rem; color: var(--gray); margin-bottom: 1.8rem; font-weight: 300; }
+  .plan-features { list-style: none; margin-bottom: 2rem; }
+  .plan-features li {
+    font-size: 0.85rem; color: var(--chrome);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex; align-items: center; gap: 0.7rem;
+    font-weight: 300;
+  }
+  .plan-features li::before {
+    content: '▸'; color: var(--orange); font-size: 0.7rem; flex-shrink: 0;
+  }
+  .btn-plan {
+    display: block; width: 100%;
+    padding: 0.9rem;
+    text-align: center;
+    font-size: 0.8rem; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    text-decoration: none;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    transition: 0.2s;
+  }
+  .btn-plan-ghost {
+    border: 1.5px solid rgba(255,255,255,0.2);
+    color: var(--chrome);
+  }
+  .btn-plan-ghost:hover { border-color: var(--orange); color: var(--orange); }
+  .btn-plan-solid {
+    background: var(--orange); color: var(--white);
+  }
+  .btn-plan-solid:hover { background: var(--orange2); }
+
+  /* ── WHY US ── */
+  #why { background: var(--black); }
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem; margin-top: 3.5rem;
+    align-items: center;
+  }
+  .why-visual {
+    position: relative;
+    height: 420px;
+    background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+    border: 1px solid rgba(255,94,0,0.15);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .why-visual-inner {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 7rem; color: rgba(255,94,0,0.08);
+    letter-spacing: 5px; line-height: 1;
+    text-align: center;
+  }
+  .why-badge {
+    position: absolute; bottom: 2rem; right: 2rem;
+    background: var(--orange);
+    padding: 1rem;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+  .why-badge-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem; line-height: 1; color: var(--white);
+  }
+  .why-badge-text {
+    font-size: 0.65rem; letter-spacing: 1.5px;
+    text-transform: uppercase; color: rgba(255,255,255,0.85);
+    font-weight: 600;
+  }
+  .why-points { display: flex; flex-direction: column; gap: 2rem; }
+  .why-point {
+    display: flex; gap: 1.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .why-point:last-child { border-bottom: none; padding-bottom: 0; }
+  .why-point-icon {
+    font-size: 1.8rem; flex-shrink: 0;
+    width: 52px; height: 52px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(255,94,0,0.1);
+    border: 1px solid rgba(255,94,0,0.2);
+  }
+  .why-point h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem; letter-spacing: 1px;
+    margin-bottom: 0.4rem;
+  }
+  .why-point p { color: var(--chrome); font-size: 0.85rem; line-height: 1.65; font-weight: 300; }
+
+  /* ── GALLERY ── */
+  #gallery { background: #080808; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 200px 200px;
+    gap: 4px; margin-top: 3rem;
+  }
+  .gallery-item {
+    background: linear-gradient(135deg, #1a1a1a, #0f0f0f);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    color: rgba(255,94,0,0.15); font-size: 5rem;
+    position: relative; overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.04);
+    cursor: pointer;
+    transition: border-color 0.3s;
+  }
+  .gallery-item:hover { border-color: rgba(255,94,0,0.3); }
+  .gallery-item:nth-child(1) { grid-row: span 2; font-size: 8rem; }
+  .gallery-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 1rem 1.2rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+    font-size: 0.75rem; letter-spacing: 2px; color: var(--chrome);
+    text-transform: uppercase; font-family: 'Inter', sans-serif;
+    font-weight: 600;
+  }
+
+  /* ── TESTIMONIALS ── */
+  #testimonials { background: var(--black); }
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem; margin-top: 3.5rem;
+  }
+  .testi-card {
+    background: #0F0F0F;
+    padding: 2rem;
+    border-left: 3px solid var(--orange);
+    position: relative;
+  }
+  .testi-quote {
+    font-size: 3rem; color: var(--orange);
+    opacity: 0.3; line-height: 1;
+    font-family: Georgia, serif; margin-bottom: 0.5rem;
+  }
+  .testi-text {
+    font-size: 0.9rem; color: var(--chrome);
+    line-height: 1.7; font-weight: 300;
+    font-style: italic;
+  }
+  .testi-author {
+    margin-top: 1.5rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .testi-avatar {
+    width: 40px; height: 40px;
+    background: var(--orange);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+  }
+  .testi-name { font-weight: 700; font-size: 0.88rem; }
+  .testi-vehicle { font-size: 0.75rem; color: var(--gray); margin-top: 0.1rem; }
+  .testi-stars { color: var(--orange); font-size: 0.8rem; margin-top: 0.4rem; }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--steel); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 5rem; margin-top: 3.5rem;
+    align-items: start;
+  }
+  .contact-info { display: flex; flex-direction: column; gap: 2rem; }
+  .contact-item { display: flex; gap: 1.2rem; align-items: flex-start; }
+  .contact-icon {
+    font-size: 1.3rem; width: 48px; height: 48px;
+    background: rgba(255,94,0,0.12);
+    border: 1px solid rgba(255,94,0,0.25);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-item h4 {
+    font-size: 0.72rem; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--orange);
+    font-weight: 700; margin-bottom: 0.4rem;
+  }
+  .contact-item p { color: var(--chrome); font-size: 0.9rem; font-weight: 300; line-height: 1.6; }
+  .contact-hours {
+    margin-top: 2rem; padding: 1.5rem;
+    border: 1px solid rgba(255,94,0,0.15);
+    background: rgba(255,94,0,0.04);
+  }
+  .contact-hours h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem; letter-spacing: 2px;
+    margin-bottom: 1rem; color: var(--orange);
+  }
+  .hours-row {
+    display: flex; justify-content: space-between;
+    font-size: 0.82rem; padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    color: var(--chrome); font-weight: 300;
+  }
+  .hours-row:last-child { border-bottom: none; }
+  .hours-row span:last-child { color: var(--white); font-weight: 500; }
+
+  .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+  .form-group label {
+    font-size: 0.7rem; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--chrome);
+    font-weight: 600;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--white); padding: 0.85rem 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem; outline: none;
+    transition: border-color 0.2s;
+    resize: vertical;
+    appearance: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--orange); }
+  .form-group select option { background: #1a1a1a; }
+  .form-submit {
+    background: var(--orange); color: var(--white);
+    border: none; padding: 1rem 2.5rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    cursor: pointer;
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    transition: background 0.2s, transform 0.2s;
+    align-self: flex-start;
+  }
+  .form-submit:hover { background: var(--orange2); transform: translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #050505;
+    padding: 3rem 4rem 2rem;
+    border-top: 1px solid rgba(255,94,0,0.12);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem; margin-bottom: 3rem;
+  }
+  .footer-brand { }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem; letter-spacing: 3px;
+    margin-bottom: 1rem;
+  }
+  .footer-logo span { color: var(--orange); }
+  .footer-tagline {
+    color: var(--gray); font-size: 0.85rem;
+    line-height: 1.7; font-weight: 300;
+    max-width: 260px;
+  }
+  .footer-socials {
+    display: flex; gap: 0.8rem; margin-top: 1.5rem;
+  }
+  .social-btn {
+    width: 36px; height: 36px;
+    background: rgba(255,255,255,0.06);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem; text-decoration: none; color: var(--chrome);
+    clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+    transition: background 0.2s, color 0.2s;
+  }
+  .social-btn:hover { background: var(--orange); color: var(--white); }
+  .footer-col h5 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem; letter-spacing: 2px;
+    color: var(--white); margin-bottom: 1.2rem;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-col a {
+    color: var(--gray); font-size: 0.82rem;
+    text-decoration: none; font-weight: 300;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--orange); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-legal { color: var(--gray); font-size: 0.78rem; }
+  .footer-legal a { color: var(--gray); text-decoration: none; }
+  .footer-legal a:hover { color: var(--orange); }
+
+  /* ── TICKER ── */
+  .ticker-wrap {
+    background: var(--orange); overflow: hidden;
+    padding: 0.6rem 0; white-space: nowrap;
+  }
+  .ticker-inner {
+    display: inline-block;
+    animation: ticker 25s linear infinite;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.9rem; letter-spacing: 3px;
+    color: var(--black);
+  }
+  .ticker-inner span { margin: 0 3rem; }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    #hero { padding: 8rem 1.5rem 4rem; }
+    .why-grid, .contact-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .gallery-item:nth-child(1) { grid-row: auto; }
+    #offer-banner { padding: 1rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">APEX<span>✕</span>CUSTOMS</div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#deals">Deals</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta">Book Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-text">APEX</div>
+  <div class="slash-decor"></div>
+  <div class="slash-line"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Premium Auto Customization</div>
+    <h1>BUILD YOUR<em>LEGEND.</em></h1>
+    <p class="hero-sub">From aggressive body kits to whisper-quiet ceramic coatings — we transform production cars into personal statements. Every bolt torqued. Every finish flawless.</p>
+    <div class="btn-group">
+      <a href="#contact" class="btn-primary">Book Free Consultation</a>
+      <a href="#services" class="btn-ghost">Explore Services</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">1,200+</div>
+        <div class="stat-label">Builds Completed</div>
+      </div>
+      <div>
+        <div class="stat-num">12 YRS</div>
+        <div class="stat-label">In Business</div>
+      </div>
+      <div>
+        <div class="stat-num">98%</div>
+        <div class="stat-label">Client Satisfaction</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span>WRAPS</span><span>▸</span>
+    <span>CERAMIC COATING</span><span>▸</span>
+    <span>PERFORMANCE UPGRADES</span><span>▸</span>
+    <span>CUSTOM PAINT</span><span>▸</span>
+    <span>BODY KITS</span><span>▸</span>
+    <span>WINDOW TINTING</span><span>▸</span>
+    <span>SUSPENSION TUNING</span><span>▸</span>
+    <span>INTERIOR MODS</span><span>▸</span>
+    <span>WHEEL CUSTOMIZATION</span><span>▸</span>
+    <!-- Duplicate for seamless loop -->
+    <span>WRAPS</span><span>▸</span>
+    <span>CERAMIC COATING</span><span>▸</span>
+    <span>PERFORMANCE UPGRADES</span><span>▸</span>
+    <span>CUSTOM PAINT</span><span>▸</span>
+    <span>BODY KITS</span><span>▸</span>
+    <span>WINDOW TINTING</span><span>▸</span>
+    <span>SUSPENSION TUNING</span><span>▸</span>
+    <span>INTERIOR MODS</span><span>▸</span>
+    <span>WHEEL CUSTOMIZATION</span><span>▸</span>
+  </div>
+</div>
+
+<!-- OFFER BANNER -->
+<div id="offer-banner">
+  <div class="offer-tag">🔥 LIMITED TIME</div>
+  <div class="offer-text">MONSOON SPECIAL — 20% OFF ALL CERAMIC COATINGS THIS MONTH</div>
+  <a href="#deals" class="offer-cta">Claim Offer →</a>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-eyebrow">What We Do</div>
+  <h2>OUR SERVICES</h2>
+  <p class="section-sub">Every service is delivered with workshop precision, OEM-grade materials, and a satisfaction guarantee — no shortcuts, no excuses.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="service-icon">🎨</span>
+      <h3>Custom Paint & Wraps</h3>
+      <p>Full-body resprays, two-tone splits, chameleon pigments, and premium vinyl wraps from 3M and Avery Dennison. Your colour, your rules.</p>
+      <div class="service-tag">From ₹25,000</div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🛡️</span>
+      <h3>Ceramic Coating</h3>
+      <p>9H nano-ceramic protection that repels water, UV, bird droppings, and minor scratches. Guaranteed shine for up to 5 years.</p>
+      <div class="service-tag">From ₹18,000</div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">⚡</span>
+      <h3>Performance Upgrades</h3>
+      <p>ECU remapping, cold-air intakes, exhaust systems, and turbo kits tuned to your power goals — dyno-tested before delivery.</p>
+      <div class="service-tag">From ₹35,000</div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🔩</span>
+      <h3>Body Kits & Aero</h3>
+      <p>Wide-body flares, front splitters, rear diffusers, and custom spoilers — carbon fibre, fibreglass, or polyurethane. Fitment guaranteed.</p>
+      <div class="service-tag">From ₹40,000</div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🪟</span>
+      <h3>Window Tinting</h3>
+      <p>High-performance nano-ceramic films in 5% to 70% VLT. UV blocking, heat rejection, and scratch resistance. Legal compliance ensured.</p>
+      <div class="service-tag">From ₹4,500</div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🛞</span>
+      <h3>Wheels & Suspension</h3>
+      <p>Alloy upgrades, custom powder coating, coilover installs, and alignment — lowered stance or lifted aggression, we handle it all.</p>
+      <div class="service-tag">From ₹12,000</div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🎧</span>
+      <h3>Interior Customization</h3>
+      <p>Custom upholstery, suede headliners, ambient lighting, infotainment upgrades, roll cages, and bucket seat fitment.</p>
+      <div class="service-tag">From ₹20,000</div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">💡</span>
+      <h3>Lighting Upgrades</h3>
+      <p>LED matrix headlights, DRL kits, underbody neons, sequential turn signals, and custom tail-light retrofits for maximum visibility and style.</p>
+      <div class="service-tag">From ₹6,000</div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🛡</span>
+      <h3>Paint Protection Film</h3>
+      <p>Self-healing TPU film on vulnerable panels — bumpers, hood, mirrors, door edges. Protects against stone chips, bugs, and swirl marks.</p>
+      <div class="service-tag">From ₹30,000</div>
+    </div>
+  </div>
+</section>
+
+<!-- DEALS -->
+<section id="deals">
+  <div class="section-eyebrow">Hot Offers</div>
+  <h2>CURRENT DEALS</h2>
+  <p class="section-sub">Limited-time packages engineered for maximum impact at minimum spend. These won't last long.</p>
+  <div class="deals-grid">
+    <div class="deal-card">
+      <div class="deal-badge">SAVE 20%</div>
+      <h3>🌧️ Monsoon Shield Pack</h3>
+      <p>Ceramic coating + window tinting + underbody anti-rust treatment. Everything your car needs before the rains hit.</p>
+      <div class="deal-price">
+        <span class="price-new">₹32,000</span>
+        <span class="price-old">₹40,000</span>
+      </div>
+      <div class="deal-timer">⏰ Offer ends June 30, 2026</div>
+      <a href="#contact" class="deal-link">Claim This Deal →</a>
+    </div>
+    <div class="deal-card">
+      <div class="deal-badge">SAVE 15%</div>
+      <h3>🔥 Street Fighter Bundle</h3>
+      <p>Body kit fitment + custom paint/wrap + wheel powder coating. One price, one pickup — full transformation guaranteed.</p>
+      <div class="deal-price">
+        <span class="price-new">₹72,000</span>
+        <span class="price-old">₹84,700</span>
+      </div>
+      <div class="deal-timer">⏰ First 10 customers only</div>
+      <a href="#contact" class="deal-link">Claim This Deal →</a>
+    </div>
+    <div class="deal-card">
+      <div class="deal-badge">FREE ADD-ON</div>
+      <h3>🎁 Performance Tune + Free Tint</h3>
+      <p>Book any ECU remap or performance upgrade package and get a full window tint (all windows) absolutely free.</p>
+      <div class="deal-price">
+        <span class="price-new">₹38,000</span>
+        <span class="price-old">₹44,500</span>
+      </div>
+      <div class="deal-timer">⏰ Ongoing — while slots last</div>
+      <a href="#contact" class="deal-link">Claim This Deal →</a>
+    </div>
+    <div class="deal-card">
+      <div class="deal-badge">NEW</div>
+      <h3>✨ Full Interior Makeover</h3>
+      <p>Custom seat upholstery + steering wrap + ambient lighting + dashboard trim. Your cabin, completely reimagined.</p>
+      <div class="deal-price">
+        <span class="price-new">₹45,000</span>
+        <span class="price-old">₹55,000</span>
+      </div>
+      <div class="deal-timer">⏰ New launch price — limited period</div>
+      <a href="#contact" class="deal-link">Claim This Deal →</a>
+    </div>
+    <div class="deal-card">
+      <div class="deal-badge">SAVE ₹5K</div>
+      <h3>🛞 Wheel & Stance Package</h3>
+      <p>Alloy wheel upgrade (set of 4) + coilover suspension install + wheel alignment. Drop it, slam it, own the road.</p>
+      <div class="deal-price">
+        <span class="price-new">₹55,000</span>
+        <span class="price-old">₹60,000</span>
+      </div>
+      <div class="deal-timer">⏰ Weekend special</div>
+      <a href="#contact" class="deal-link">Claim This Deal →</a>
+    </div>
+    <div class="deal-card">
+      <div class="deal-badge">REFERRAL</div>
+      <h3>🤝 Bring a Friend Discount</h3>
+      <p>Refer a friend for any service worth ₹20,000+ and both of you get 10% off your next booking. No cap on referrals.</p>
+      <div class="deal-price">
+        <span class="price-new">10% OFF</span>
+      </div>
+      <div class="deal-timer">⏰ Permanent programme</div>
+      <a href="#contact" class="deal-link">Get Your Code →</a>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-eyebrow">Transparent Costs</div>
+  <h2>PRICING PLANS</h2>
+  <p class="section-sub">Choose a package or mix and match individual services. No hidden charges — ever. What you see is what you pay.</p>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="plan-name">ESSENTIAL</div>
+      <div class="plan-price">₹<span>20K</span></div>
+      <p class="plan-desc">Single-service focus. Perfect for a quick upgrade without the full commitment.</p>
+      <ul class="plan-features">
+        <li>One service of choice</li>
+        <li>Standard materials</li>
+        <li>1-year workmanship warranty</li>
+        <li>Exterior wash included</li>
+        <li>2-day turnaround</li>
+      </ul>
+      <a href="#contact" class="btn-plan btn-plan-ghost">Book Essential</a>
+    </div>
+    <div class="price-card featured">
+      <div class="plan-name">PRO BUILD</div>
+      <div class="plan-price">₹<span>75K</span></div>
+      <p class="plan-desc">Our most popular package. Exterior, protection, and performance in one seamless job.</p>
+      <ul class="plan-features">
+        <li>Full vinyl wrap OR custom paint</li>
+        <li>9H ceramic coating</li>
+        <li>Window tinting (all glass)</li>
+        <li>Wheel powder coat (4 wheels)</li>
+        <li>ECU tune OR body kit</li>
+        <li>Interior detailing</li>
+        <li>3-year warranty</li>
+        <li>Priority scheduling</li>
+      </ul>
+      <a href="#contact" class="btn-plan btn-plan-solid">Book Pro Build</a>
+    </div>
+    <div class="price-card">
+      <div class="plan-name">FULL CUSTOM</div>
+      <div class="plan-price">₹<span>1.5L+</span></div>
+      <p class="plan-desc">No limits. Concept-to-completion builds for enthusiasts who want the full treatment.</p>
+      <ul class="plan-features">
+        <li>Everything in Pro Build</li>
+        <li>Wide body / aero package</li>
+        <li>Full interior reupholstery</li>
+        <li>Paint Protection Film</li>
+        <li>Stage 2+ performance tune</li>
+        <li>Custom lighting package</li>
+        <li>Dedicated build manager</li>
+        <li>5-year warranty</li>
+        <li>Photoshoot & reveal</li>
+      </ul>
+      <a href="#contact" class="btn-plan btn-plan-ghost">Get a Quote</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="section-eyebrow">Why Apex</div>
+  <h2>BUILT DIFFERENT.</h2>
+  <div class="why-grid">
+    <div class="why-visual">
+      <div class="why-visual-inner">12<br/>YEARS<br/>APEX</div>
+      <div class="why-badge">
+        <div class="why-badge-num">1,200</div>
+        <div class="why-badge-text">Cars Transformed</div>
+      </div>
+    </div>
+    <div class="why-points">
+      <div class="why-point">
+        <div class="why-point-icon">🏆</div>
+        <div>
+          <h4>Award-Winning Workshop</h4>
+          <p>Recognized at the India Auto Customization Expo 2024 for best body transformation. Our work speaks louder than our claims.</p>
+        </div>
+      </div>
+      <div class="why-point">
+        <div class="why-point-icon">🔬</div>
+        <div>
+          <h4>OEM-Grade Materials Only</h4>
+          <p>We stock 3M, Avery Dennison, Gyeon Quartz, and Akzo Nobel products. No cheap alternatives — your car deserves the best.</p>
+        </div>
+      </div>
+      <div class="why-point">
+        <div class="why-point-icon">📋</div>
+        <div>
+          <h4>Written Warranty on Every Job</h4>
+          <p>Every service comes with a documented warranty. We back our work in writing — 1 to 5 years depending on the package.</p>
+        </div>
+      </div>
+      <div class="why-point">
+        <div class="why-point-icon">📸</div>
+        <div>
+          <h4>Before & After Documentation</h4>
+          <p>We photograph every car at drop-off and delivery. Full transparency, zero surprises, and a keepsake of the transformation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="section-eyebrow">Our Work</div>
+  <h2>RECENT BUILDS</h2>
+  <div class="gallery-grid">
+    <div class="gallery-item">🏎</div>
+    <div class="gallery-item">🎨
+      <div class="gallery-label">Chameleon Wrap — Thar</div>
+    </div>
+    <div class="gallery-item">⚡
+      <div class="gallery-label">Stage 2 Tune — Creta</div>
+    </div>
+    <div class="gallery-item">🛞
+      <div class="gallery-label">Stance Build — Polo</div>
+    </div>
+    <div class="gallery-item">🛡️
+      <div class="gallery-label">Ceramic + PPF — XUV700</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-eyebrow">Client Reviews</div>
+  <h2>WHAT THEY SAY</h2>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">Apex did a full chameleon wrap on my Thar. The finish is insane — every head turns on the road. Completed on time, no drama, zero compromise on quality.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">RV</div>
+        <div>
+          <div class="testi-name">Rohit Verma</div>
+          <div class="testi-vehicle">Mahindra Thar RWD 2024</div>
+          <div class="testi-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">Got the Pro Build package for my XUV700. Ceramic coating is absolutely bulletproof — six months in and it still beads water like day one. The tint is perfect.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">PS</div>
+        <div>
+          <div class="testi-name">Priya Sharma</div>
+          <div class="testi-vehicle">Mahindra XUV700 AX7 2023</div>
+          <div class="testi-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">The ECU tune on my Creta N-Line added a ridiculous amount of shove. Apex walked me through every change — super professional, no upselling, just honest advice.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">AK</div>
+        <div>
+          <div class="testi-name">Arjun Kapoor</div>
+          <div class="testi-vehicle">Hyundai Creta N-Line 2025</div>
+          <div class="testi-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">Booked the interior makeover — custom Nappa leather with contrast stitching and ambient LEDs. My car looks more premium than cars double its price. Blown away.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">NK</div>
+        <div>
+          <div class="testi-name">Neha Kulkarni</div>
+          <div class="testi-vehicle">Honda City Hybrid 2024</div>
+          <div class="testi-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-eyebrow">Get in Touch</div>
+  <h2>BOOK YOUR BUILD</h2>
+  <p class="section-sub">Drop your details and we'll reach out within 2 hours. Consultations are free, no strings attached.</p>
+  <div class="contact-grid">
+    <div>
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <h4>Location</h4>
+            <p>Plot 47, Sector 18 Industrial Area<br/>Gurugram, Haryana 122 016</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <h4>Call / WhatsApp</h4>
+            <p>+91 98765 43210<br/>+91 91234 56789</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div>
+            <h4>Email</h4>
+            <p>builds@apexcustoms.in<br/>support@apexcustoms.in</p>
+          </div>
+        </div>
+      </div>
+      <div class="contact-hours">
+        <h4>Workshop Hours</h4>
+        <div class="hours-row"><span>Monday – Friday</span><span>9:00 AM – 7:00 PM</span></div>
+        <div class="hours-row"><span>Saturday</span><span>9:00 AM – 5:00 PM</span></div>
+        <div class="hours-row"><span>Sunday</span><span>By Appointment</span></div>
+      </div>
+    </div>
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" placeholder="Your name" required/>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone / WhatsApp</label>
+          <input type="tel" id="phone" placeholder="+91 XXXXX XXXXX" required/>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="you@example.com"/>
+        </div>
+        <div class="form-group">
+          <label for="car">Car Make & Model</label>
+          <input type="text" id="car" placeholder="e.g. Tata Nexon EV"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="service">Service Interested In</label>
+        <select id="service">
+          <option value="">— Select a service —</option>
+          <option>Custom Paint & Wraps</option>
+          <option>Ceramic Coating</option>
+          <option>Performance Upgrades</option>
+          <option>Body Kit & Aero</option>
+          <option>Window Tinting</option>
+          <option>Wheels & Suspension</option>
+          <option>Interior Customization</option>
+          <option>Lighting Upgrades</option>
+          <option>Paint Protection Film</option>
+          <option>Full Custom Build</option>
+          <option>Multiple / Unsure</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">Tell Us More</label>
+        <textarea id="message" rows="4" placeholder="Describe what you have in mind — we'll make it happen."></textarea>
+      </div>
+      <button type="submit" class="form-submit">Send Enquiry →</button>
+      <p id="form-success" style="display:none; color:#FF5E00; font-size:0.85rem; font-weight:600; letter-spacing:1px; margin-top:0.5rem;">
+        ✔ Message received! We'll call you within 2 hours.
+      </p>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">APEX<span>✕</span>CUSTOMS</div>
+      <p class="footer-tagline">Gurugram's most trusted auto customization workshop. We don't just modify cars — we build identities.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-btn">𝕏</a>
+        <a href="#" class="social-btn">in</a>
+        <a href="#" class="social-btn">📷</a>
+        <a href="#" class="social-btn">▶</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#services">Custom Paint & Wraps</a></li>
+        <li><a href="#services">Ceramic Coating</a></li>
+        <li><a href="#services">Performance Tunes</a></li>
+        <li><a href="#services">Body Kits & Aero</a></li>
+        <li><a href="#services">Window Tinting</a></li>
+        <li><a href="#services">Interior Mods</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#why">About Us</a></li>
+        <li><a href="#gallery">Our Work</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#deals">Current Deals</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Legal</h5>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Warranty Policy</a></li>
+        <li><a href="#">Refund Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-legal">© 2026 Apex Customs. All rights reserved. | GST: 06AXXXX0000X1Z5</div>
+    <div class="footer-legal">Made with 🔥 in Gurugram, India</div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 60) {
+      nav.style.padding = '0.8rem 4rem';
+    } else {
+      nav.style.padding = '1.2rem 4rem';
+    }
+  });
+
+  // Form submit handler
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+    setTimeout(() => {
+      document.getElementById('form-success').style.display = 'block';
+      btn.style.display = 'none';
+      e.target.reset();
+    }, 1000);
+  }
+
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.service-card, .deal-card, .price-card, .why-point, .testi-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
